@@ -1,0 +1,34 @@
+# Kubernetes (K8s) - Container Orchestration Tool
+
+Kubernetes helps manage, scale, and deploy multiple containers automatically.
+
+---
+
+## Core Kubernetes Objects (Workload Management)
+- **Namespace:** Divides the cluster into isolated environments.
+- **ReplicaSet:** Maintains the desired number of pod replicas.
+- **DaemonSet:** Ensures a pod runs on every node (e.g., for monitoring).
+- **HPA (Horizontal Pod Autoscaler):** Scales pods based on CPU/memory usage.
+
+---
+
+## Kubernetes Services (Application Exposure)
+- **ClusterIP:** Default service; accessible only within the cluster.
+- **NodePort:** Exposes the application on a fixed port on each node.
+- **LoadBalancer:** Distributes external traffic across multiple pods.
+
+---
+
+## Kubernetes Architecture
+
+### Control Plane (Master Node)
+- **API Server:** Handles all cluster requests.
+- **Controller Manager:** Manages node failures & auto-scaling.
+- **Scheduler:** Assigns pods to worker nodes.
+- **ETCD:** Stores cluster data (key-value store).
+
+### Worker Nodes
+- **Pods:** The smallest deployable unit running containers.
+- **Kubelet:** Ensures pods run properly on the node.
+- **Kube Proxy:** Manages networking and load balancing.
+- **CRI (Container Runtime Interface):** Runs containers (e.g., Docker, containerd, CRI-O).
