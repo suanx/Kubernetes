@@ -1,0 +1,34 @@
+Practice Setup & Installation Sequence
+
+Step 1: Clone the Repository
+
+git clone https://github.com/manjukolkar/kubernetes-docs.git
+cd kubernetes-docs
+
+Step 2: Installation Sequence
+Install the following tools in order.
+
+Docker – Container engine.
+VirtualBox – Required if not using the Docker driver for Minikube.
+Minikube – Local Kubernetes cluster for practice.
+kubectl – CLI tool to interact with the Kubernetes cluster
+
+Step 3: Configure Docker Permissions
+Run the following command to allow non-root Docker access:
+sudo usermod -aG docker $USER && newgrp docker
+
+Step 4: Start Minikube (Using Docker Driver)
+minikube start --driver=docker
+
+COMMOND                                                                           DESCRIPTTION
+minikube start --driver=docker	                                                  Starts Minikube using Docker as the driver.
+kubectl get namespaces or kubectl get ns	                                        Lists all namespaces in the cluster.
+kubectl get namespace kube-system	                                                Displays details of the kube-system namespace (system components).
+kubectl get pods -n kube-system	                                                  Lists all pods running in the kube-system namespace.
+kubectl get pods -n <namespace>	                                                  Lists all pods in a specified namespace.
+kubectl create namespace sujan	                                                  Creates a new namespace named sujan.
+kubectl create deployment hello-minni --image=k8s.gcr.io/echo-server:1.0 -n       sujan	Creates a deployment called hello-minni in the sujan namespace using the specified image.
+kubectl get pods -n sujan                                                        	Lists the pods running in the sujan namespace.
+
+
+
