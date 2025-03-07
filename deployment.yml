@@ -1,0 +1,21 @@
+//to create deploymnt layer for replicaset and pods
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repdepset
+spec:
+  replicas: 10
+  selector:
+    matchLabels:     # Corrected indentation and capitalization
+      app: dset-app
+  template:
+    metadata:
+      labels:
+        app: dset-app
+    spec:
+      containers:
+        - name: dsetcont
+          image: nginx     # Corrected the 'image' field
+          ports:
+            - containerPort: 80   # Corrected the spelling
