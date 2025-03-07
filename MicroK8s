@@ -42,8 +42,19 @@ There are two ways to create objects in Kubernetes:
         kubectl apply -f <filename>.yml
         ```
 
-Pod Protection and High Availability  
+Pod Protection and High Availability  ( diagram below represents how the pods will be protected) 
 
++--------------------+
+|   Deployment       |
+|                    |
+|   +------------+   |
+|   | ReplicaSet |   |
+|   |            |   |
+|   |  +-------+ |   |
+|   |  |  Pods | |   |
+|   |  +-------+ |   |
+|   +------------+   |
++--------------------+
 1. ReplicaSet (Ensures Pod Availability)  
    - Sometimes, pods may get deleted manually or due to failures.  
    - To ensure pod availability, ReplicaSet is used.  
