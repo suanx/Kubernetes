@@ -1,0 +1,63 @@
+MicroK8s - An Alternative to Minikube  
+
+- MicroK8s is a lightweight and portable alternative to Kubernetes and Minikube.  
+- Compared to Minikube, MicroK8s is more portable and suitable for edge computing or resource-constrained environments.  
+
+Installation of MicroK8s  
+
+1. Go to the official MicroK8s website.  
+2. Run the following command to install MicroK8s:  
+   ```
+   sudo snap install microk8s --classic
+   ```
+3. To use kubectl commands normally, set an alias:  
+   ```
+   alias kubectl="microk8s kubectl"
+   ```
+
+Kubernetes Object Creation Methods  
+
+There are two ways to create objects in Kubernetes:  
+
+1. Imperative Method (Command-based)  
+   - Uses direct commands to create resources.  
+   - Example: Creating a pod using a command:  
+     ```
+     kubectl run <podname> --image=nginx
+     ```
+   - This method is mainly used for testing and quick deployments.  
+
+2. Declarative Method (Configuration-based - YAML)  
+   - Uses YAML files to define resources.  
+   - This method is commonly used in organizations for production deployments.  
+   - Before creating a pod, check the API version using:  
+     ```
+     kubectl explain pod
+     ```
+   - Steps to create a pod using YAML:  
+     1. Create a `.yml` file using `vi` or any text editor.  
+     2. Define the pod configuration in the YAML file.  
+     3. Apply the configuration:  
+        ```
+        kubectl apply -f <filename>.yml
+        ```
+
+Pod Protection and High Availability  
+
+1. ReplicaSet (Ensures Pod Availability)  
+   - Sometimes, pods may get deleted manually or due to failures.  
+   - To ensure pod availability, ReplicaSet is used.  
+   - ReplicaSet automatically restarts a pod if it gets deleted.  
+   - API Version Difference:  
+     - For normal pods: `apiVersion: v1`  
+     - For ReplicaSet: `apiVersion: apps/v1`  
+   - Before creating a ReplicaSet, always check the available API versions:  
+     ```
+     kubectl explain pod
+     kubectl explain replicaset
+     ```
+
+2. Deployment (Manages ReplicaSets and Pods)  
+   - What if someone deletes a ReplicaSet?  
+   - To protect both ReplicaSets and Pods, Deployments are used.  
+   - A Deployment ensures that even if a ReplicaSet is deleted, it will recreate it along with the pods.  
