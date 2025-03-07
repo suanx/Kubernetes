@@ -1,0 +1,12 @@
+//to create the Pods in the kubernetes with yaml file
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-sujan-pod
+spec:
+  containers:
+    - name: my-cont
+      image: nginx
+      ports:
+        - containerPort: 80
