@@ -1,0 +1,21 @@
+//to create replicaset via yaml file
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: repset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:     # Corrected indentation and capitalization
+      app: rs-app
+  template:
+    metadata:
+      labels:
+        app: rs-app
+    spec:
+      containers:
+        - name: mycontainerc1
+          image: nginx     # Corrected the 'image' field
+          ports:
+            - containerPort: 80   # Corrected the spelling
