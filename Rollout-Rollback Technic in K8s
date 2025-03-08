@@ -1,0 +1,38 @@
+Real Life Scenario - Government Websites
+
+Most government websites are built at low costs and are not maintained properly over time. When updating to newer features or posting notices, these websites often display messages like "website under maintenance." If they were built on Kubernetes, these types of problems wouldn't usually occur due to features like versioning or rolling rollback. Let's explore this further.
+
+Rollout - Updating to the Next Version
+
+Note: How to edit the deleted `.yml` file, or if you have the main file, how we can change the coding inside without opening it with the Vim editor.
+
+1. Get the deployment:
+   ```shell
+   kubectl get deployment
+   ```
+
+2. Copy the name of the deployment file and paste it below inside `<nameoffile>`:
+   ```shell
+   kubectl edit deployment/<nameoffile>
+   ```
+
+3. Edit the file and increase/decrease the image version. This process is called a rollout technique.
+
+4. If the image version is not found, it doesn't affect the server. It will run on 50% of the pods. The remaining 50% will only try to update first. If the new version is found, then the other 50% will update to the latest version. Once updated to the newer version, old pods are terminated immediately.
+
+5. Rollout command after editing:
+   ```shell
+   kubectl rollout status deployments/deplname
+   ```
+
+Rollback - Get Back to Previous Version
+
+1. Rollback command:
+   ```shell
+   kubectl rollout undo deployments/deplname
+   ```
+
+2. To run the rollout:
+   ```shell
+   kubectl rollout status deployments/deplname
+   ```
