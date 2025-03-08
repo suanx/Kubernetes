@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: deplname
+  labels:
+    app: nginx
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: podmat
+
+  template:
+    metadata:
+      labels:
+        app: podmat
+    spec:
+      containers:
+      - name: podco
+        image: nginx:1.26
+        ports:
+        - containerPort: 80
+
+        resources:
+          requests:
+            memory: "120Mi"
+            cpu: "250m"
+          limits:
+            memory: "250Mi"
+            cpu: "500m"
