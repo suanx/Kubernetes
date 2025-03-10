@@ -36,3 +36,23 @@ Rollback - Get Back to Previous Version
    ```shell
    kubectl rollout status deployments/deplname
    ```
+
+
+MORE ON SCALING AND PORT EXPOSING TO OUSIDE (FACE TO INTERNET)
+
+To scale your deployment using imperative commands:
+```shell
+kubectl scale deployment/<deployment-name> --replicas=<num>
+```
+For instance, if you have 10 replicas and you set `<num>=4`, the number of replicas will be reduced to 4.
+
+When performing a rollout or rollback, pod IPs will change. Therefore, to group pods and enable communication, use TCP. 
+
+- Pods have cluster IPs and host IPs.
+- Kubernetes typically assigns IPs in the range of 3000-4000.
+- Update your YAML file with the required TCP and LoadBalancer (LB) features and ports.
+- After applying changes, run:
+```shell
+kubectl get svc
+```
+Under `TYPE:LB`, check which ports are exposed.
