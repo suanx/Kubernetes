@@ -72,3 +72,9 @@ Pod Protection and High Availability  ( diagram below represents how the pods wi
    - What if someone deletes a ReplicaSet?  
    - To protect both ReplicaSets and Pods, Deployments are used.  
    - A Deployment ensures that even if a ReplicaSet is deleted, it will recreate it along with the pods.  
+
+
+TRICK TO CREATE YAML FILE IF U FORGOT THE SYNTAX
+Use this "kubectl create --dry-run=client -o yaml"
+how to use 
+Example:"kubectl create deployment my-app --image=nginx --dry-run=client -o yaml"
